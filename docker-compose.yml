@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  category-service:
+    build:
+      context: ./categories
+      dockerfile: ./Dockerfile
+    container_name: category-service
+    ports:
+      - "${CATEGORY_SERVICE_PORT}:${CATEGORY_SERVICE_PORT}"
+    environment:
+      - CATEGORY_SERVICE_PORT=${CATEGORY_SERVICE_PORT}
+
+  product-service:
+    build:
+      context: ./Products
+      dockerfile: ./Dockerfile
+    container_name: product-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - category-service
+    environment:
+      - CATEGORY_SERVICE_PORT=${CATEGORY_SERVICE_PORT}
+      - CATEGORY_SERVICE_HOST=category-service
+      - ASPNETCORE_ENVIRONMENT=Development

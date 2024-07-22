@@ -1,0 +1,117 @@
+# .gitignore for Golang and C# projects
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Logs
+*.log
+
+# Dependency directories
+vendor/
+*.vendor
+
+# Go specific
+*.test
+*.out
+*.a
+*.o
+*.h
+*.cgo
+*.cache
+*.c
+*.s
+
+# Go workspace file
+go.work
+go.work.sum
+
+# C# specific
+bin/
+obj/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+
+# Visual Studio
+.vscode/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.unsuccessfulbuild
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Minidump files
+*.dmp
+
+# Visual Studio 2019+
+.vscode/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotNet CLI
+dotnet.exe
+
+# Microsoft Visual Studio Source Code Control
+*.vssscc
+*.vspscc
+
+# Microsoft Azure Web App publish settings
+*.PublishSettings
+
+# Microsoft Azure Web App publish settings
+PublishProfiles/
+
+# Microsoft Azure Web App publish settings
+Backup/
+
+# Visual Studio 2019 upgrade log
+UpgradeLog*.htm
+UpgradeLog*.xml
+
+# Visual Studio 2019 backup folder
+*.orig/
+
+# Roslyn specific folders
+*.roslyn/
+
+# JetBrains Rider
+.idea/
+
+# Coverlet Coverage
+coverage.opencover.xml
+coverage.json
+coverage.lcov
+
+# C# temp files
+*.nupkg
+*.snupkg
+
+# macOS
+.DS_Store
+
+# Linux
+*~

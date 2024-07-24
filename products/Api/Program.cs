@@ -1,5 +1,9 @@
 
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Polly;
 using Polly.Retry;
 
@@ -21,6 +25,26 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+
+const string serviceName = "cs-products";
+
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options
+        .SetResourceBuilder(
+            ResourceBuilder.CreateDefault()
+                .AddService(serviceName))
+        .AddConsoleExporter();
+});
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService(serviceName))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddConsoleExporter())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddConsoleExporter());
+
 
 // Add resilience handler to HttpClient, so we handle products<->categories communication errors
 builder.Services.AddHttpClient<Api.Service>().AddStandardResilienceHandler();
